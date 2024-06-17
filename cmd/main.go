@@ -19,8 +19,11 @@ func main() {
 	userUseCase := usecases.NewUserUseCase(userRepo)
 	userHandler := handlers.NewUserHandler(userUseCase)
 
+	instituteRepo := repository.NewInstituteRepository(db.DB)
+	instituteUseCase := usecases.NewInstituteUseCase(instituteRepo)
+	instituteHandler := handlers.NewInstituteHandler(instituteUseCase)
 	// Routes
-	r := routes.SetupRouter(userHandler)
+	r := routes.SetupRouter(userHandler, instituteHandler)
 
 	r.Run(":8000")
 }

@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupRouter(UserHandler *handlers.UserHandler) *gin.Engine {
+func SetupRouter(UserHandler *handlers.UserHandler, InsituteHandler *handlers.InstituteHandler) *gin.Engine {
 	r := gin.Default()
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
