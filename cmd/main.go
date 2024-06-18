@@ -22,8 +22,17 @@ func main() {
 	instituteRepo := repository.NewInstituteRepository(db.DB)
 	instituteUseCase := usecases.NewInstituteUseCase(instituteRepo)
 	instituteHandler := handlers.NewInstituteHandler(instituteUseCase)
+
+	teacherRepo := repository.NewTeacherRepository(db.DB)
+	teacherUseCase := usecases.NewTeacherUsecase(teacherRepo)
+	teacherHandler := handlers.NewTeacherHandler(teacherUseCase)
+
+	courseRepo := repository.NewCourseRepository(db.DB)
+	courseUseCase := usecases.NewCourseUsecase(courseRepo)
+	courseHandler := handlers.NewCourseHandler(courseUseCase)
+
 	// Routes
-	r := routes.SetupRouter(userHandler, instituteHandler)
+	r := routes.SetupRouter(userHandler, instituteHandler, teacherHandler, courseHandler)
 
 	r.Run(":8000")
 }

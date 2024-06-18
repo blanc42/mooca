@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/blanc42/mooca/pkg/models"
 	"github.com/blanc42/mooca/pkg/usecases"
@@ -35,17 +36,17 @@ func (u *UserHandler) GetUserProfile(c *gin.Context) {
 	// id, _ := c.Params.Get("id")
 
 	// get id from params as number
-	// id, err := strconv.Atoi(c.Params.ByName("id"))
-	// if err != nil {
-	// 	c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid user ID"})
-	// 	return
-	// }
+	id, err := strconv.Atoi(c.Params.ByName("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid user ID"})
+		return
+	}
 
-	id := c.MustGet("id").(uint)
+	// id := c.MustGet("id").(uint)
 
 	// get user from use case
 
-	user, err := u.userUseCase.GetUserProfile(id)
+	user, err := u.userUseCase.GetUserProfile(uint(id))
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
 		return

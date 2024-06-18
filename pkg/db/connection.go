@@ -20,5 +20,5 @@ func ConnectToDB() {
 }
 
 func InitializeDB() {
-	DB.AutoMigrate(&models.User{}, &models.Role{})
+	DB.AutoMigrate(&models.User{}, &models.Role{}, &models.Institute{}, &models.Teacher{}, &models.Course{})
 }
