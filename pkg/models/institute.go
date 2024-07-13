@@ -11,5 +11,5 @@ type Institute struct {
 	Description string    `json:"description" gorm:"not null"`
 	Avatar      string    `json:"avatar" gorm:"not null"`
 	Country     string    `json:"country" gorm:"not null"`
-	Courses     []*Course `gorm:"many2many:institute_courses;"`
+	Courses     []*Course `json:"-" gorm:"many2many:institute_courses;"`
 }

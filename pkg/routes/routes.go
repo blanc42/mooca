@@ -16,26 +16,29 @@ func SetupRouter(UserHandler *handlers.UserHandler, InsituteHandler *handlers.In
 	// apiRouter := r.Group("/api/v1",)
 	apiRouter := r.Group("/api/v1")
 	{
-		usersGroup := apiRouter.Group("/users")
-		{
-			usersGroup.POST("", UserHandler.RegisterUser)
-			usersGroup.GET("/:id", UserHandler.GetUserProfile)
-		}
-		institutesGroup := apiRouter.Group("/institutes")
-		{
-			institutesGroup.POST("", InsituteHandler.CreateInstitute)
-			institutesGroup.GET("/:id", InsituteHandler.GetInstituteByID)
-		}
-		teachersGroup := apiRouter.Group("/teachers")
-		{
-			teachersGroup.POST("", TeacherHandler.CreateTeacher)
-			teachersGroup.GET("/:id", TeacherHandler.GetTeacherByID)
-		}
-		coursesGroup := apiRouter.Group("/courses")
-		{
-			coursesGroup.POST("", CourseHandler.CreateCourse)
-			coursesGroup.GET("/:id", CourseHandler.GetCourseByID)
-		}
+		apiRouter.POST("/signup", UserHandler.RegisterUser)
+		apiRouter.POST("/login", UserHandler.LoginUser)
+
+		// usersGroup := apiRouter.Group("/users")
+		// {
+		// 	// usersGroup.POST("", UserHandler.RegisterUser)
+		// 	usersGroup.GET("/:id", UserHandler.GetUserProfile)
+		// }
+		// institutesGroup := apiRouter.Group("/institutes")
+		// {
+		// 	institutesGroup.POST("", InsituteHandler.CreateInstitute)
+		// 	institutesGroup.GET("/:id", InsituteHandler.GetInstituteByID)
+		// }
+		// teachersGroup := apiRouter.Group("/teachers")
+		// {
+		// 	teachersGroup.POST("", TeacherHandler.CreateTeacher)
+		// 	teachersGroup.GET("/:id", TeacherHandler.GetTeacherByID)
+		// }
+		// coursesGroup := apiRouter.Group("/courses")
+		// {
+		// 	coursesGroup.POST("", CourseHandler.CreateCourse)
+		// 	coursesGroup.GET("/:id", CourseHandler.GetCourseByID)
+		// }
 	}
 
 	return r

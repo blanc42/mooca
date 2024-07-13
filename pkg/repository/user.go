@@ -1,6 +1,8 @@
 package repository
 
-import "github.com/blanc42/mooca/pkg/models"
+import (
+	"github.com/blanc42/mooca/pkg/models"
+)
 
 type UserRepository interface {
 	CreateUser(user *models.User) error
